@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  cache_server:
+    image: "redis:6.0.18"
+  database:
+    image: "mysql:8.0.32"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1qaz2wsx
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    volumes:
+      - ./database/:/var/lib/mysql
+  wordpress:
+    image: "wordpress:6.1.1-apache"
+    depends_on:
+      - cache_server
+      - database
+    environment:
+      - WORDPRESS_DB_HOST=database
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    ports:
+      - 8080:80
+    volumes:
+      - ./wordpress/:/var/www/htm`
