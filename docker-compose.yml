@@ -24,4 +24,4 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ./wordpress/:/var/www/htm`
+      - ./wordpress/:/var/www/html
