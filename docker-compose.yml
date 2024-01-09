@@ -1,7 +1,5 @@
 version: "3.9"
 services:
-  cache_server:
-    image: "redis:6.0.18"
   database:
     image: "mysql:8.0.32"
     environment:
@@ -9,8 +7,7 @@ services:
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
-    volumes:
-      - ./database/:/var/lib/mysql
+
   wordpress:
     image: "wordpress:6.1.1-apache"
     depends_on:
